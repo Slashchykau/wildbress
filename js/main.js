@@ -12,27 +12,31 @@ const mySwiper = new Swiper('.swiper-container', {
 
 const buttonCart = document.querySelector('.button-cart');
 const modalCart = document.querySelector('#modal-cart');
-const modalClose = document.querySelector('.modal-close')
-const openModal = function() {
+const openModal = function () {
 	modalCart.classList.add('show')
 };
-const closeModal = function() {
+const closeModal = function () {
 	modalCart.classList.remove('show');
 }
 buttonCart.addEventListener('click', openModal);
-modalClose.addEventListener('click', closeModal);
-
+modalCart.addEventListener('click', function (event) {
+	if (event.target.classList.contains('overlay') || event.target.classList.contains('modal-close')) {
+		closeModal()
+	};
+})
 // scroll smooth
 {
-const scrollLinks = document.querySelectorAll('a.scroll-link');
- for (let i = 0; i< scrollLinks.length; i++) {
-	 scrollLinks[i].addEventListener('click', function(event) {
-		 event.preventDefault();
-		 const id = scrollLinks[i].getAttribute('href');
-		 document.querySelector(id).scrollIntoView({
-			 behavior: 'smooth',
-			 block: 'start'
-		 })
-	 });
- }
+	const scrollLinks = document.querySelectorAll('a.scroll-link');
+	for (let i = 0; i < scrollLinks.length; i++) {
+		scrollLinks[i].addEventListener('click', function (event) {
+			event.preventDefault();
+			const id = scrollLinks[i].getAttribute('href');
+
+			document.querySelector(id).scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			})
+		});
+
+	}
 }
